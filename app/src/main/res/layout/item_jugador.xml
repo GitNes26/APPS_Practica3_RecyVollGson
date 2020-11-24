@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:padding="10dp"
+    android:background="#FF8383">
+
+    <ImageView
+        android:id="@+id/fotoGamer"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:contentDescription="@string/DescripcionImagen"
+        android:src="@drawable/gamer"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:weightSum="4"
+        android:layout_toRightOf="@id/fotoGamer"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/ID"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="ID:"
+            android:autoSizeTextType="uniform"/>
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Nombre:"
+            android:autoSizeTextType="uniform"/>
+
+        <TextView
+            android:id="@+id/numero"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Numero:"
+            android:autoSizeTextType="uniform"/>
+
+        <TextView
+            android:id="@+id/creado"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Creado:"
+            android:autoSizeTextType="uniform"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/editado"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Editado:"-->
+<!--            android:autoSizeTextType="uniform"/>-->
+    </LinearLayout>
+
+</RelativeLayout>
