@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,11 +16,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-        Gson gson = new Gson();
-
         mVolleyS = VolleyS.getInstance(this.getApplicationContext());
         requestQueue = mVolleyS.getRequestQueue();
         findViewById(R.id.btnJugadores).setOnClickListener(this);
@@ -65,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //despues crear la clase
         //despues crear el adaptador
 
-        List<Jugador> ListaJugadores = new ArrayList<>();
-        ListaJugadores.add(new Jugador(R.drawable.gamer,"ID: ","Nombre: ","Numero: ","Creado: "));
-        ListaJugadores.add(new Jugador(R.drawable.gamer,"ID: ","Nombre: ","Numero: ","Creado: "));
-
-        AdaptadorJugador Jugadores = new AdaptadorJugador(ListaJugadores);
-        recyclerView.setAdapter(Jugadores);
+//        List<Jugador> ListaJugadores = new ArrayList<>();
+//        ListaJugadores.add(new Jugador(R.drawable.gamer,"1", "Nestorin", "16", "123","14"));
+//        ListaJugadores.add(new Jugador(R.drawable.gamer,"2 ","Josue ","2 ","15656 ", "11515"));
+//
+//        AdaptadorJugador Jugadores = new AdaptadorJugador(ListaJugadores);
+//        recyclerView.setAdapter(Jugadores);
 
 /*
         //y creamos nuestra lista de (en este caso) vacas
@@ -97,21 +98,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
         if (v.getId() == R.id.btnJugadores) {
-            String url = "http://www.ramiro174.com/api/obtener/numero";
+            String url = "https://www.ramiro174.com/api/obtener/numero";
 
             JsonObjectRequest objetoJSon = new JsonObjectRequest(Request.Method.GET, url, null ,new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
                         JSONArray arreglo = response.getJSONArray("resultados");
-                        for (int i = 0; i < arreglo.length(); i++){
-                            JSONObject resultado = arreglo.getJSONObject(i);
-                            String id = resultado.getString("id");
-                            String nombre = resultado.getString("nombre");
-                            String numero = resultado.getString("numero");
-                            String creado = resultado.getString("creado");
-                        }
+
+                        Gson gson = new Gson();
+                        final Type JugadorType = new TypeToken<List<Jugador>>(){}.getType();
+                        List<Jugador> ListaJugadores = gson.fromJson(arreglo.toString(), JugadorType);
+
+                        AdaptadorJugador Jugadores = new AdaptadorJugador(ListaJugadores);
+                        recyclerView.setAdapter(Jugadores);
+//                        for (int i = 0; i < arreglo.length(); i++){
+//                            JSONObject resultado = arreglo.getJSONObject(i);
+//                            String id = resultado.getString("id");
+//                            String nombre = resultado.getString("nombre");
+//                            String numero = resultado.getString("numero");
+//                            String creado = resultado.getString("creado");
+//                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

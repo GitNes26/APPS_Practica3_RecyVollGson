@@ -46,7 +46,8 @@ public class AdaptadorJugador extends RecyclerView.Adapter<AdaptadorJugador.MiHo
         private TextView nombre;
         private TextView numero;
         private TextView creado;
-//        private TextView modificado;
+        private TextView modificado;
+
 
         public MiHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,17 +57,17 @@ public class AdaptadorJugador extends RecyclerView.Adapter<AdaptadorJugador.MiHo
             nombre = itemView.findViewById(R.id.nombre);
             numero = itemView.findViewById(R.id.numero);
             creado = itemView.findViewById(R.id.creado);
-            //modificado = itemView.findViewById(R.id.modificado);
+            modificado = itemView.findViewById(R.id.editado);
 
         }
 
         public void setData(final Jugador modelo) {
-            foto.setImageResource(modelo.getFoto());
+            foto.setImageResource(R.drawable.gamer);
             id.setText(modelo.getId());
             nombre.setText(modelo.getNombre());
             numero.setText(modelo.getNumero());
-            creado.setText(modelo.getCreado());
-            //modificado.setText(modelo.getModificado());
+            creado.setText(modelo.getCreated_at());
+            modificado.setText(modelo.getUpdated_at());
         }
     }
 }

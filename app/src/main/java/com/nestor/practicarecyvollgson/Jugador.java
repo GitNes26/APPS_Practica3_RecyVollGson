@@ -1,20 +1,23 @@
 package com.nestor.practicarecyvollgson;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Jugador {
     private int foto;
     private String  id;
     private String nombre;
     private String numero;
-    private String creado;
-//    private String modificado;
+    private String created_at;
+    private String updated_at;
 
 
-    public Jugador(int foto, String id, String nombre, String numero, String creado) {
+    public Jugador(int foto, String id, String nombre, String numero, String created_at, String updated_at) {
         this.foto = foto;
         this.id = id;
         this.nombre = nombre;
         this.numero = numero;
-        this.creado = creado;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
     public int getFoto() {
@@ -49,19 +52,19 @@ public class Jugador {
         this.numero = numero;
     }
 
-    public String getCreado() {
-        return creado;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setCreado(String creado) {
-        this.creado = creado;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
-//    public String getModificado() {
-//        return modificado;
-//    }
-//
-//    public void setModificado(String modificado) {
-//        this.modificado = modificado;
-//    }
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
 }
